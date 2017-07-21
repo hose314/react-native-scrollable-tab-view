@@ -47,7 +47,9 @@ const DefaultTabBar = React.createClass({
       onPress={
         () => {
           onPressHandler(page);
-          onClick();
+          if (typeof this.props.onClick === 'function') {
+            this.props.onClick(page);
+          }
         }
       }
     >
