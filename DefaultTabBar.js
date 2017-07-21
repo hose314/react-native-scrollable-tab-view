@@ -20,6 +20,7 @@ const DefaultTabBar = React.createClass({
     tabStyle: ViewPropTypes.style,
     renderTab: React.PropTypes.func,
     underlineStyle: ViewPropTypes.style,
+    onClick: React.PropTypes.string,
   },
 
   getDefaultProps() {
@@ -43,7 +44,12 @@ const DefaultTabBar = React.createClass({
       accessible={true}
       accessibilityLabel={name}
       accessibilityTraits='button'
-      onPress={() => onPressHandler(page)}
+      onPress={
+        () => {
+          onPressHandler(page);
+          onClick();
+        }
+      }
     >
       <View style={[styles.tab, this.props.tabStyle, ]}>
         <Text style={[{color: textColor, }, textStyle, ]}>
